@@ -1,3 +1,93 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  @variants responsive {
+    .masonry-md {
+      column-count: 2;
+      column-gap: 1em;
+    }
+
+    .masonry-lg {
+      column-count: 3;
+      column-gap: 1em;
+    }
+
+    .masonry-2xl {
+      column-count: 4;
+      column-gap: 1em;
+    }
+
+    .break-inside {
+      break-inside: avoid;
+    }
+  }
+}
+
+.custom-loader div:first-child {
+  animation-delay: 0.1s;
+}
+
+.custom-loader div:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.custom-loader div:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.preview-modal {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  transition: opacity 0.4s ease, visibility 0.4s ease,
+    transform 0.5s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0);
+  overflow: hidden;
+  z-index: 999;
+  flex-direction: column;
+}
+
+.preview-modal.open {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.preview-modal video {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  display: block;
+  line-height: 0;
+  box-sizing: border-box;
+  padding: 20px 0 20px;
+  margin: 0 auto;
+}
+
+.preview-modal.open svg.close-icon {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 3rem;
+  height: 3rem;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  cursor: pointer;
+}
+
+.rendition-tab {
+  position: fixed;
+  top: 30px;
+}
