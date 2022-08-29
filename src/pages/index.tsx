@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Layout from "../components/Layout";
 import Head from "next/head";
 
 const SEOWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -23,7 +24,7 @@ const SEOWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 const Home: NextPage = () => {
   return (
     <SEOWrapper>
-      <h1 className="text-3xl font-bold underline">Gifneey Next!</h1>
+      <Layout />
     </SEOWrapper>
   );
 };
