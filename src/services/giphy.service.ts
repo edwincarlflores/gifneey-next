@@ -56,4 +56,6 @@ class GiphyService extends HttpClient {
   }
 }
 
+export const giphyAPI = GiphyService.getInstance();
+
 export default GiphyService;

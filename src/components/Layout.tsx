@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import Fallback from "./common/Fallback";
 import Pagination from "./Pagination";
 import Loader from "./common/Loader";
-import GiphyService from "../services/giphy.service";
+import API from "../utils/APIUtils";
 import type { IGifData } from "../interfaces/giphy.interface";
 
 type ResultType = "trending" | "search" | "trending-home";
@@ -29,8 +29,6 @@ const Layout: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState(false);
 
-  const giphyApi = GiphyService.getInstance();
-
   const getGifs = async (
     type: ResultType,
     offset = 0,
@@ -42,18 +40,16 @@ const Layout: FC = () => {
 
       const results =
         type === "search"
-          ? await giphyApi.getSearchResults(searchQuery, {
-              offset,
-              limit: DEFAULT_PAGE_RESULT_COUNT,
-            })
-          : await giphyApi.getTrendingGifs({
-              offset,
-              limit: DEFAULT_PAGE_RESULT_COUNT,
-            });
+          ? await await API(
+              `/api/search?query=${searchQuery}&offset=${offset}&limit=${DEFAULT_PAGE_RESULT_COUNT}`
+            )
+          : await API(
+              `/api/trending?offset=${offset}&limit=${DEFAULT_PAGE_RESULT_COUNT}`
+            );
 
-      setData(results.data.data);
-      setTotalCount(results.data.pagination.total_count);
-      setPageResultCount(results.data.pagination.count);
+      setData(results.data);
+      setTotalCount(results.pagination.total_count);
+      setPageResultCount(results.pagination.count);
       setResultType(type);
       setLoading(false);
 
