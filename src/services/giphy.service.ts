@@ -36,7 +36,7 @@ class GiphyService extends HttpClient {
   ): Promise<AxiosResponse<IGiphyResponse>> {
     return this.instance.get<IGiphyResponse>("/trending", {
       params: {
-        api_key: process.env.NEXT_PUBLIC_GIPHY_API_KEY,
+        api_key: process.env.GIPHY_API_KEY,
         ...optionalParams,
       },
     });
@@ -48,7 +48,7 @@ class GiphyService extends HttpClient {
   ): Promise<AxiosResponse<IGiphyResponse>> {
     return this.instance.get<IGiphyResponse>("/search", {
       params: {
-        api_key: process.env.NEXT_PUBLIC_GIPHY_API_KEY,
+        api_key: process.env.GIPHY_API_KEY,
         q: searchQuery,
         ...optionalParams,
       },
