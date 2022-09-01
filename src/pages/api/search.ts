@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { giphyAPI } from "../../services/giphy.service";
+import { giphyAPI } from "../../services/server/giphy.service";
 import type { IGiphyResponse } from "../../interfaces/giphy.interface";
 
 export default async function handler(

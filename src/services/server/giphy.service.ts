@@ -1,10 +1,10 @@
 import { AxiosResponse } from "axios";
-import HttpClient from "../lib/http-client";
-import type { IGiphyResponse } from "../interfaces/giphy.interface";
+import HttpClient from "../../lib/http-client";
+import type { IGiphyResponse } from "../../interfaces/giphy.interface";
 
 const GIPHY_GIF_API_BASE_URL = "https://api.giphy.com/v1/gifs";
 
-type GifsOptionalParams = {
+export type GifsOptionalParams = {
   limit?: number;
   offset?: number;
   rating?: string;

@@ -2,9 +2,12 @@ import { FC, useEffect, useState } from "react";
 import Gallery from "./Gallery";
 import Navbar from "./Navbar";
 import Fallback from "./common/Fallback";
+import {
+  fetchTrendingGIFs,
+  fetchSearchResults,
+} from "../services/client/giphy";
 import Pagination from "./Pagination";
 import Loader from "./common/Loader";
-import API from "../utils/APIUtils";
 import type { IGifData } from "../interfaces/giphy.interface";
 
 type ResultType = "trending" | "search" | "trending-home";
@@ -40,12 +43,14 @@ const Layout: FC = () => {
 
       const results =
         type === "search"
-          ? await await API(
-              `/api/search?query=${searchQuery}&offset=${offset}&limit=${DEFAULT_PAGE_RESULT_COUNT}`
-            )
-          : await API(
-              `/api/trending?offset=${offset}&limit=${DEFAULT_PAGE_RESULT_COUNT}`
-            );
+          ? await fetchSearchResults(searchQuery, {
+              offset,
+              limit: DEFAULT_PAGE_RESULT_COUNT,
+            })
+          : await fetchTrendingGIFs({
+              offset,
+              limit: DEFAULT_PAGE_RESULT_COUNT,
+            });
 
       setData(results.data);
       setTotalCount(results.pagination.total_count);
