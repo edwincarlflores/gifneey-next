@@ -20,10 +20,10 @@ const Thumbnail: FC<ThumbnailProps> = ({ image, index }) => {
   return (
     <div className={imageCardClassName}>
       <LazyLoadImage
-        src={image.images.fixed_width_still.url}
+        src={image.images.fixed_width_downsampled.url}
         alt={image.title}
         width="100%"
-        height={image.images.fixed_width_still.height}
+        height={image.images.fixed_width_downsampled.height}
         effect="blur"
         className="z-0"
       />
