@@ -1,6 +1,4 @@
 export const download = async (url = "", filename = "gifneey.gif") => {
-  console.log(url);
-
   if (!url) {
     return;
   }
@@ -25,8 +23,6 @@ export const download = async (url = "", filename = "gifneey.gif") => {
 };
 
 export const downloadSync = (url = "", filename = "gifneey.gif") => {
-  console.log(url);
-
   if (!url) {
     return;
   }
