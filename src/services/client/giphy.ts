@@ -13,10 +13,10 @@ type SearchResults = (
   optionalParams: RequestOptionalParams
 ) => Promise<IGiphyResponse>;
 
-export const fetchTrendingGIFs: TrendingGifs = async ({ offset, limit }) =>
+export const fetchTrendingGIFs: TrendingGifs = ({ offset, limit }) =>
   API(`/api/trending?offset=${offset}&limit=${limit}`);
 
-export const fetchSearchResults: SearchResults = async (
+export const fetchSearchResults: SearchResults = (
   searchQuery,
   { offset, limit }
 ) => API(`/api/search?query=${searchQuery}&offset=${offset}&limit=${limit}`);

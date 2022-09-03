@@ -29,14 +29,16 @@ const Fallback: FC<FallbackProps> = ({
   }
 
   return (
-    <div className="mx-4 flex justify-center space-x-4 px-6 text-gray-700 sm:space-x-12 sm:px-12">
-      <img
-        src={icon.src}
-        alt="no-result-image"
-        className="h-32 w-32 text-gray-700"
-      />
-      <div className="self-center overflow-hidden px-2 font-mono text-sm md:text-5xl">
-        {message}
+    <div className="flex h-full items-center justify-center">
+      <div className="mx-4 flex justify-center space-x-4 px-6 text-gray-700 sm:space-x-12 sm:px-12">
+        <img
+          src={icon.src}
+          alt="no-result-image"
+          className="h-32 w-32 text-gray-700"
+        />
+        <div className="self-center overflow-hidden px-2 font-mono text-sm md:text-5xl">
+          {message}
+        </div>
       </div>
     </div>
   );
