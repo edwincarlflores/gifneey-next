@@ -24,6 +24,7 @@ const Home: NextPage = () => {
   const [data, setData] = useState<IGifData[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [pageResultCount, setPageResultCount] = useState(0);
+  const [pageOffset, setPageOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [resultType, setResultType] = useState<ResultType>("trending");
   const [searchQuery, setSearchQuery] = useState("");
@@ -52,6 +53,7 @@ const Home: NextPage = () => {
         setData(data.data);
         setTotalCount(data.pagination.total_count);
         setPageResultCount(data.pagination.count);
+        setPageOffset(data.pagination.offset);
 
         if (resetPageNumber) {
           setCurrentPage(1);
@@ -76,6 +78,7 @@ const Home: NextPage = () => {
         setData(data.data);
         setTotalCount(data.pagination.total_count);
         setPageResultCount(data.pagination.count);
+        setPageOffset(data.pagination.offset);
 
         if (resetPageNumber) {
           setCurrentPage(1);
@@ -150,10 +153,8 @@ const Home: NextPage = () => {
     <Layout setResultType={setResultType} setSearchQuery={setSearchQuery}>
       <div className="my-12 pb-32 pt-12">
         <Heading
-          rangeStart={(currentPage - 1) * DEFAULT_PAGE_RESULT_COUNT + 1}
-          rangeEnd={
-            (currentPage - 1) * DEFAULT_PAGE_RESULT_COUNT + pageResultCount
-          }
+          rangeStart={pageOffset + 1}
+          rangeEnd={pageOffset + pageResultCount}
           total={Math.min(totalCount, DEFAULT_MAX_OFFSET + 1)}
           type={resultType}
         />
