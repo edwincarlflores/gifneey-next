@@ -1,12 +1,12 @@
-import { Dispatch, FC, SetStateAction, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
+import { useAtom } from "jotai";
+import { triggerSearchAtom } from "../atoms";
 
-type SearchFieldProps = {
-  setSearchQuery: Dispatch<SetStateAction<string>>;
-};
-
-const SearchField: FC<SearchFieldProps> = ({ setSearchQuery }) => {
+const SearchField: FC = () => {
   const [fieldValue, setFieldValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [, triggerSearch] = useAtom(triggerSearchAtom);
 
   return (
     <div className="relative text-gray-400">
@@ -22,7 +22,7 @@ const SearchField: FC<SearchFieldProps> = ({ setSearchQuery }) => {
         }}
         onKeyDown={(event) => {
           if (event.key === "Enter" && fieldValue) {
-            setSearchQuery(fieldValue);
+            triggerSearch(fieldValue);
 
             if (inputRef?.current) {
               inputRef?.current?.blur();
@@ -42,7 +42,7 @@ const SearchField: FC<SearchFieldProps> = ({ setSearchQuery }) => {
           onClick={(event) => {
             event.preventDefault();
             if (fieldValue) {
-              setSearchQuery(fieldValue);
+              triggerSearch(fieldValue);
             }
           }}
         >

@@ -1,0 +1,2 @@
+export const DEFAULT_PAGE_RESULT_COUNT = 50;
+export const DEFAULT_MAX_OFFSET = 4999;

@@ -1,13 +1,9 @@
-import { FC, Dispatch, SetStateAction } from "react";
+import { FC } from "react";
 import Head from "next/head";
 import Navbar from "./Navbar";
 
-type ResultType = "trending" | "search" | "trending-home";
-
 interface LayoutProps {
   children: React.ReactNode;
-  setResultType: Dispatch<SetStateAction<ResultType>>;
-  setSearchQuery: Dispatch<SetStateAction<string>>;
 }
 
 const SEOWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -29,15 +25,11 @@ const SEOWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   </div>
 );
 
-const Layout: FC<LayoutProps> = ({
-  children,
-  setResultType,
-  setSearchQuery,
-}) => {
+const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <SEOWrapper>
       <div className="bg-slate-50">
-        <Navbar setResultType={setResultType} setSearchQuery={setSearchQuery} />
+        <Navbar />
         <div className="container mx-auto h-screen max-w-fit p-6 md:p-6 lg:px-24 lg:py-20">
           {children}
         </div>

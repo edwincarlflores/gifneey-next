@@ -1,34 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Gifneey
 
-## Getting Started
+Search, preview and download GIFs of different sizes
 
-First, run the development server:
+## Development Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+1. Node version 16.13.1 or higher
+2. NPM version 8.1.2 or higher
+3. Giphy API key
+4. `.env` file used to store the API key for Giphy API
+5. Prettier VS Code extension
+6. ESLint VS Code extension
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running the application
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+1. Checkout the `main` branch
+2. Create a `.env` file with `GIPHY_API_KEY` variable to the root directory
+3. Install the dependencies: `yarn`
+4. Start the application: `yarn dev`
+5. Navigate to `http://localhost:3000`
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Environment
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+| Variable      | Description                     |
+| ------------- | ------------------------------- |
+| GIPHY_API_KEY | API key to connect to Giphy API |
 
-## Learn More
+## Built with
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [TanStack Query](https://tanstack.com/query/v4)
+- [Jotai](https://jotai.org/)
+- [tailwindcss](https://tailwindcss.com/)
+- [Giphy API](https://developers.giphy.com/docs/api/endpoint/)
+- [axios](https://github.com/axios/axios)
+- [react-lazy-load-image-component](https://www.npmjs.com/package/react-lazy-load-image-component)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Edwin Carl Flores
