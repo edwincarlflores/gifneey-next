@@ -17,13 +17,23 @@ import { useSearchResultsQuery, useTrendingGIFsQuery } from "../hooks/queries";
 import { DEFAULT_PAGE_RESULT_COUNT, DEFAULT_MAX_OFFSET } from "../constants";
 import type { IGifData } from "../interfaces/giphy.interface";
 
-export type ResultType = "trending" | "search" | "trending-home";
+export type ResultType = "trending" | "search";
 
 type HeadingProps = {
   rangeStart: number;
   rangeEnd: number;
   total: number;
   type: ResultType;
+};
+
+type StatusIndicators = {
+  isFetching: boolean;
+  isLoading: boolean;
+  isError: boolean;
+};
+
+type StatusIndicatorsByResult = {
+  [key in ResultType]: StatusIndicators;
 };
 
 const Home: NextPage = () => {
@@ -94,10 +104,22 @@ const Home: NextPage = () => {
     }
   );
 
+  const STATUS_INDICATORS: StatusIndicatorsByResult = {
+    trending: {
+      isFetching: isFetchingTrending,
+      isLoading: isLoadingTrending,
+      isError: isErrorTrending,
+    },
+    search: {
+      isFetching: isFetchingSearchResults,
+      isLoading: isLoadingSearchResults,
+      isError: isErrorSearchResults,
+    },
+  };
+
   if (
-    (resultType === "search" &&
-      (isLoadingSearchResults || isFetchingSearchResults)) ||
-    (resultType !== "search" && (isLoadingTrending || isFetchingTrending))
+    STATUS_INDICATORS[resultType].isLoading ||
+    STATUS_INDICATORS[resultType].isFetching
   ) {
     return (
       <Layout>
@@ -108,17 +130,11 @@ const Home: NextPage = () => {
     );
   }
 
-  if (
-    (resultType === "search" && isErrorSearchResults) ||
-    (resultType !== "search" && isErrorTrending) ||
-    totalCount === 0
-  ) {
+  if (STATUS_INDICATORS[resultType].isError || totalCount === 0) {
     return (
       <Layout>
         <Fallback
-          error={
-            resultType === "search" ? isErrorSearchResults : isErrorTrending
-          }
+          error={STATUS_INDICATORS[resultType].isError}
           resultCount={totalCount}
           resultType={resultType}
           searchQuery={searchQuery}

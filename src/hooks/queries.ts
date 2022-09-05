@@ -5,7 +5,7 @@ import {
   fetchSearchResults,
 } from "../services/client/giphy";
 
-type ResultType = "trending" | "search" | "trending-home";
+type ResultType = "trending" | "search";
 
 type ReqParams = {
   offset: number;

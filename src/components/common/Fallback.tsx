@@ -6,7 +6,7 @@ import ErrorIcon from "../../assets/images/error.png";
 type FallbackProps = {
   error: boolean;
   resultCount: number;
-  resultType: "trending" | "search" | "trending-home";
+  resultType: "trending" | "search";
   searchQuery: string;
 };
 
