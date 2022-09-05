@@ -1,20 +1,15 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import { useAtom } from "jotai";
+import { currentPageAtom, changePageAtom } from "../atoms";
 
 type PaginationProps = {
-  currentPage: number;
   itemsPerPage: number;
-  paginate: Dispatch<SetStateAction<number>>;
   totalCount: number;
 };
 
 const DEFAULT_PAGE_COUNT_PER_GROUP = 10;
 
-const Pagination: FC<PaginationProps> = ({
-  currentPage,
-  itemsPerPage,
-  paginate,
-  totalCount,
-}) => {
+const Pagination: FC<PaginationProps> = ({ itemsPerPage, totalCount }) => {
   const [pageGroupIndex, setPageGroupIndex] = useState(0);
   const [currentPageGroup, setCurrentPageGroup] = useState<number[]>([]);
   const pageNumbers: number[] = [];
@@ -24,6 +19,9 @@ const Pagination: FC<PaginationProps> = ({
   const hiddenClassName = "hidden";
   const activeClassName =
     "active bg-zinc-300 shadow-sm focus:shadow-md rounded font-bold";
+
+  const [currentPage] = useAtom(currentPageAtom);
+  const [, changePage] = useAtom(changePageAtom);
 
   const groupPageNumbers = (
     pageNumbersArr: number[],
@@ -57,23 +55,23 @@ const Pagination: FC<PaginationProps> = ({
     if (pageNumber === currentPage) {
       return;
     }
-    paginate(pageNumber);
+    changePage(pageNumber);
   };
 
   const onClickPreviousSetOfPages = (): void => {
-    paginate((pageGroupIndex - 1) * DEFAULT_PAGE_COUNT_PER_GROUP + 1);
+    changePage((pageGroupIndex - 1) * DEFAULT_PAGE_COUNT_PER_GROUP + 1);
   };
 
   const onClickNextSetOfPages = (): void => {
-    paginate((pageGroupIndex + 1) * DEFAULT_PAGE_COUNT_PER_GROUP + 1);
+    changePage((pageGroupIndex + 1) * DEFAULT_PAGE_COUNT_PER_GROUP + 1);
   };
 
   const onClickPreviousPage = (): void => {
-    paginate(currentPage - 1);
+    changePage(currentPage - 1);
   };
 
   const onClickNextPage = (): void => {
-    paginate(currentPage + 1);
+    changePage(currentPage + 1);
   };
 
   useEffect(() => {
